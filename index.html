@@ -16,25 +16,63 @@
       	margin: 0;
       	padding: 0;
       }
-  </style>
+
+	  #container {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		}
+		#leftThing {
+		width: 25%;
+		}
+		#content {
+		width: 75%;
+		}
+	  </style>
 
 </head>
 <body>
 
-	<a href="#" class="badge badge-primary" id="time">Time</a>
-	<a href="#" class="badge badge-warning" id="changes">Changes</a>
-	<a href="#" class="badge badge-secondary" id="default">Default</a>
+	<div id="container">
+
+		<div id="leftThing">
+			<ul class="list-group" id="left">
+				<li class="list-group-item d-flex justify-content-between align-items-center" id="time">
+				  Envio por tiempo
+				  <span class="badge badge-primary badge-pill" id="spanTime">0</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between align-items-center" id="changes">
+				  Envio por Cambio de ubicación
+				  <span class="badge badge-primary badge-pill" id="spanChanges">0</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between align-items-center" id="all">
+				  Total de envios
+				  <span class="badge badge-primary badge-pill" id="spanAll">0</span>
+				</li>
+			  </ul>
+		</div>
+	  
+		<div id="content">
+			<div id="map"></div>
+		</div>
+	  
+		
+		</div>
+	  
+	  </div>
 	
-	<div id="map"></div>
+	  
+	
 
 
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
 	
 	<script src="./app.js"></script>
-	<script src="./map.js" =""></script>
+	<script src="./map.js" ></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCIbrBddWlfWQXpwnM5BPqmrvQb5cm0hQw&callback=initMap"
 	async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 </body>

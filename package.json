@@ -1,0 +1,22 @@
+{
+  "name": "tracking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jheank16oz/FirebaseFirestoreSample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jheank16oz/FirebaseFirestoreSample/issues"
+  },
+  "homepage": "https://github.com/Jheank16oz/FirebaseFirestoreSample#readme",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
+}

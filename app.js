@@ -20,9 +20,6 @@
       addMarkers(querySnapshot);
       getRealtimeUpdates();
     });
-
-
-
   }
 
   getRealtimeUpdates = function(){

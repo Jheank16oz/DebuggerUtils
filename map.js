@@ -3,23 +3,8 @@
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
-      const time = document.querySelector("#time");
-      const change = document.querySelector("#changes");
-      const defaultText = document.querySelector("#default");
-     
-      time.addEventListener("click", function(){
-
-      });
-
-      change.addEventListener("click", function(){
-
-      });
-
-      defaultText.addEventListener("click", function(){
-
-      });
-
-      var map, pos, countTime, countChange;
+    
+      var map, pos, countTime = 0, countChange = 0;
       function initMap() {
 
         getMarkers();
@@ -52,9 +37,6 @@
 
       function addMarkers(locations) {
         // saving data
-        
-        locationsData = locationsData.concat(locations);
-
         console.log("adding markers");
 
         locations.forEach((doc) => {
@@ -98,10 +80,10 @@
 
 
       function updateBanner(){
+        $("#spanTime").text(countTime);
+        $("#spanChanges").text(countChange);
+        $("#spanAll").text(countTime + countChange);
 
-
-        defaultText.innerText = countTime + countChange;
-        change.innerText = "Prueba 2";
       }
 
 
