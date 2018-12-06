@@ -9,9 +9,9 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-    con.query("SELECT * from co_pruebas_soaang_temporal.asistencia_ubigeo_proveedor WHERE IDASISTENCIA = 289424;", function (err, result) {
+    con.query("SELECT * from co_pruebas_soaang_temporal.asistencia_ubigeo_proveedor WHERE IDASISTENCIA = 289435", function (err, result) {
       if (err) throw err;
-      console.log("Result: " + result);
+      console.log("Result: " + JSON.stringify(result));
+
     });
 });
-

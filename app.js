@@ -14,19 +14,19 @@
 
 
   function getMarkers(){
-    console.log(" getting locations"); 
+    console.log("getting locations"); 
 
-    firestore.collection("miercoles").orderBy("datetime", "desc").get().then((querySnapshot) => {
+  /*  firestore.collection("miercoles").orderBy("datetime", "desc").get().then((querySnapshot) => {
       addMarkers(querySnapshot);
-      getRealtimeUpdates();
+      //getRealtimeUpdates();
     });
   }
 
   getRealtimeUpdates = function(){
     firestore.collection("miercoles").orderBy("datetime", "desc").onSnapshot(function(docs){
       addMarkers(docs);
-    });
+    });*/
   }
-
+  
 
 
