@@ -1,0 +1,72 @@
+	/* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+
+	#map {
+		height: 100%;
+	}
+
+	/* Optional: Makes the sample page fill the window. */
+
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	#container {
+		height: 100%;
+		width: 100%;
+		display: flex;
+	}
+
+	#leftThing {
+		width: 25%;
+		margin: 16px;
+	}
+
+	#content {
+		width: 75%;
+	}
+
+	#assistanceId {
+		margin-top: 14px;
+	}
+
+	#search {
+		margin-top: 14px!important;
+	}
+
+	#country {
+		margin-top: 14px;
+	}
+
+	#environment {
+		margin-top: 14px;
+	}
+
+	#alertNotFound {
+		margin-top: 14px;
+		display: none;
+	}
+
+	#alertFound {
+		margin-top: 14px;
+		display: none;
+	}
+
+	#production {
+		margin-inline-start: 14px;
+	}
+
+	.form-check {
+		width: fit-content!important;
+	}
+
+	#contentEnvironments {
+		width: 100%;
+	}
+
+	.baseMargin {
+		width: 100%;
+		margin-top: 14px;
+	}

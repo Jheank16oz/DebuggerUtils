@@ -14,47 +14,85 @@
 
 
   function getMarkers(){
+    
     $("#assistance").submit(function(event){
       event.preventDefault();
+      const environment = $('input[name=enviromentRadios]:checked').val();
+      const country = $(".btn:first-child").text().trim();
+      const assistanceId = $("#assistanceId").val();
+
+      
+      if(!validateForm(environment, country, assistanceId)){
+        return
+      }
+      
+      const environmentStr = environment == "option1" ? "pruebas" : "produccion";
+      var countryStr;
+
+      switch(country) {
+        case "Colombia":
+          countryStr = "co";
+          break;
+        case "Guatemala":
+          countryStr = "gt";
+          break;
+        case "Dóminicana":
+          countryStr = "do";
+          break;
+        case "Ecuador":
+          countryStr = "ec";
+          break;
+        case "Puerto Rico":
+          countryStr = "pr"
+          break;
+        case "Uruguay":
+          countryStr = "uy"
+          break;
+      }
+      console.log(countryStr);
+
       deleteAllMarkers();
+
       $.ajax({
-        url: "http://localhost:5000/obtener/" + $("#assistanceId").val(),
+        url: "/obtener/" + environmentStr + "/" + countryStr + "/" + assistanceId,
         method: "GET",
         dataType: "json",
         crossDomain: true,
       }).done(function(data){
-          console.log(data)
           const total = data.length;
           if( total > 0){
             addMarkers(data);
-            $("#alertFound").text("Se encontraron " + total + " resultados");
-            $("#alertFound").show();
-
-            $("#alertNotFound").hide();
+            displaySuccess("Se encontraron " + total + " resultados");
           }else{
-            $("#alertNotFound").text("No Se encontraron resultados para la asistencia." );
-            $("#alertNotFound").show();
-
-            $("#alertFound").hide();
+            displayWarning("No Se encontraron resultados para la asistencia.");
           }
       }).fail(function(data){
-        console.log("ERROR " + JSON.stringify(data))
+            displayWarning("Error de conexión intente mas tarde");
+            console.log("ERROR " + JSON.stringify(data))
       })
 
     })
 
-    
+    function validateForm(environment, country, assistanceId){
+      if(environment.length == 0 || country.length == 0 || assistanceId.length == 0){
+        displayWarning("Todos los campos son necesarios")
+        return false;
+      }
+      return true;
+    }
 
-  /*  firestore.collection("miercoles").orderBy("datetime", "desc").get().then((querySnapshot) => {
-      addMarkers(querySnapshot);
-      //getRealtimeUpdates();
-    });
-  }
+    function displayWarning(message){
+      $("#alertNotFound").text(message);
+      $("#alertNotFound").show();
+      $("#alertFound").hide();
+    }
 
-  getRealtimeUpdates = function(){
-    firestore.collection("miercoles").orderBy("datetime", "desc").onSnapshot(function(docs){
-      addMarkers(docs);
-    });*/
+    function displaySuccess(message){
+      $("#alertFound").text(message);
+      $("#alertFound").show();
+      $("#alertNotFound").hide();
+    }
+
 
 
   }

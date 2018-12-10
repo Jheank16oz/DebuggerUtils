@@ -1,104 +1,110 @@
-
 <html>
+
 <head>
-	<title>Hot dogs == Sandwiches</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	
-	<style>
-      /* Always set the map height explicitly to define the size of the div
-      * element that contains the map. */
-      #map {
-      	height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-      	height: 100%;
-      	margin: 0;
-      	padding: 0;
-      }
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	  #container {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		}
-		#leftThing {
-		width: 25%;
-		margin: 16px;
-		}
-		#content {
-		width: 75%;
-		}
-
-		#assistance{
-			padding-top: 14px;
-		}
-		#alertNotFound{
-			margin-top: 14px; 
-			display: none;
-		}
-
-		#alertFound{
-			margin-top: 14px; 
-			display: none;
-		}
-
-	  </style>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<title>Tracking app</title>
 
 </head>
+
 <body>
 
 	<div id="container">
-
 		<div id="leftThing">
-	
-				<form class="form-inline my-2 my-lg-0" id="assistance">
-					<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			<form class="form-inline my-2 my-lg-0" id="assistance">
 
-			
-						<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
-								<strong>...</strong> ...
-						</div>
+				<h4>Entorno</h4>
+				<div id="contentEnvironments">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios1" value="option1" checked="">
+						<label class="form-check-label" for="exampleRadios1">Pruebas
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios2" value="option2">
+						<label class="form-check-label" for="exampleRadios2">Producción
+						</label>
+					</div>
 
-						<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
-								<strong>...</strong> ...
-							</div>
+				</div>
 
-				</form>
+				<div class="dropdown show baseMargin" id="countryDropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="countrySelected"
+					 aria-expanded="false">Colombia</button>
 
-				
+					<div class="dropdown-menu" aria-labelledby="countryDropdown">
+						<a class="dropdown-item" href="#">Colombia</a>
+						<a class="dropdown-item" href="#">Guatemala</a>
+						<a class="dropdown-item" href="#">Dóminicana</a>
+						<a class="dropdown-item" href="#">Ecuador</a>
+						<a class="dropdown-item" href="#">Puerto Rico</a>
+						<a class="dropdown-item" href="#">Uruguay</a>
+					</div>
+				</div>
 
 
-			
+				<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
+				<button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
+					<strong>...</strong> ...
+				</div>
+
+				<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
+					<strong>...</strong> ...
+				</div>
+
+
+
+
+			</form>
 		</div>
-	  
+
 		<div id="content">
 			<div id="map"></div>
 		</div>
-	  
-		
-		</div>
-	  
-	  </div>
-	
-	  
-	
-		
 
+	</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
-	
 	<script src="./app.js"></script>
-	<script src="./map.js" ></script>
-	
+	<script src="./map.js"></script>
+
 	<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-	<script src="./connection.js" ></script>
+	<script src="./connection.js"></script>
 
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCIbrBddWlfWQXpwnM5BPqmrvQb5cm0hQw&callback=initMap"
-	async defer></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+	 async defer></script>
+
+
+
+
+
+
 </body>
+
 </html>

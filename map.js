@@ -8,7 +8,7 @@
       var markers = [];
       var bounds;
       function initMap() {
-
+      
         getMarkers();
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -32,12 +32,7 @@
     }
 
       function addMarkers(locations) {
-       // saving data
-        console.log("adding markers");
         locations.forEach((doc) => {
-          console.log(doc.LATITUD)
-          console.log(doc.LONGITUD)
-
           var indexPostion = {
             lat: doc.LATITUD,
             lng: doc.LONGITUD
@@ -80,7 +75,13 @@
         markers = [];
       }
 
-    
+      
+      $(".dropdown-menu a").click(function(){
+  
+        $(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
+        
+      });
+      
 
 
     
