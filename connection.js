@@ -30,13 +30,36 @@ app.get('/obtener/:environment/:country/:id', (req, res) => {
       if (err) console.log(err) 
       var query = "SELECT * from " + req.params.country + "_" + environmentString + "soaang_temporal.asistencia_ubigeo_proveedor_concluidas WHERE IDASISTENCIA = " + req.params.id;
       currentConection.query(query, function (err, result) {
-        console.log("Result: " + result.sqlMessage);
         if (err) console.log(err);
         console.log("Result: " + JSON.stringify(result));
         res.status(200).send(result)
 
       });
   });
+});
+
+
+app.get('/info/:environment/:country', (req, res) => {
+  var environmentString = req.params.environment
+  var currentConection = con;
+  if(environmentString == "produccion"){
+    currentConection =  conProduction;
+    environmentString = "";
+
+  }else{
+    environmentString += "_";
+  }
+  
+  currentConection.connect(function(err) {
+    if (err) console.log(err) 
+    var query = "SELECT * from login_email.configuracion_pais WHERE PAIS ='" + req.params.country+"'";
+    currentConection.query(query, function (err, result) {
+      if (err) console.log(err);
+      console.log("Result: " + JSON.stringify(result));
+      res.status(200).send(result)
+
+    });
+});
 });
 
 // files access
@@ -59,6 +82,11 @@ app.get('/connection.js', function (req, res) {
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
+
+app.post('/dropbox.php', function (req, res) {
+  res.sendFile(__dirname + '/dropbox.php');
+});
+
 
 
 const PORT = 5000;

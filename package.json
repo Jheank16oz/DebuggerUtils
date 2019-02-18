@@ -18,7 +18,11 @@
   "homepage": "https://github.com/Jheank16oz/FirebaseFirestoreSample#readme",
   "dependencies": {
     "@mysql/xdevapi": "file:mysql-connector-nodejs-8.0.13.tar.gz",
+    "dropbox": "^4.0.14",
+    "es6-promise": "^4.2.5",
+    "isomorphic-fetch": "^2.2.1",
     "mysql": "^2.16.0",
+    "node-php": "0.0.1",
     "xpress": "^2.4.6"
   }
 }

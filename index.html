@@ -4,8 +4,9 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="styles.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous">
@@ -14,6 +15,51 @@
 </head>
 
 <body>
+	<!-- Dialogo de información-->
+
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<ul class="list-group">
+					<li class="list-group-item">
+						Distancia arribo <h5 id="distancia_arribo"></h5>
+					</li>
+					<li class="list-group-item">
+						Distancia coordenadas <h5 id="distancia_coordenadas">...</h5>
+					</li>
+					<li class="list-group-item">
+						Tiempo coordenadas <h5 id="tiempo_coordenadas">...</h5>
+					</li>
+					<li class="list-group-item">
+						Distancia término <h5 id="distancia_termino">...</h5>
+					</li>
+					<li class="list-group-item">
+						Primera busqueda <h5 id="primer_busqueda">...</h5>
+					</li>
+					<li class="list-group-item">
+						Segunda busqueda <h5 id="segunda_busqueda">...</h5>
+					</li>
+					<li class="list-group-item">
+						Tiempo ac <h5 id="tiempo_ac">...</h5>
+					</li>
+					<li class="list-group-item">
+						tiempo deslogueo <h5 id="tiempo_deslogueo">...</h5>
+					</li>
+					<li class="list-group-item">
+						Tiempo inactivo - libre <h5 id="tiempo_inac_libre">...</h5>
+					</li>
+					<li class="list-group-item">
+						Tiempo inactivo - ocupado <h5 id="tiempo_inac_ocupado">...</h5>
+					</li>
+
+				</ul>
+
+
+			</div>
+		</div>
+	</div>
+
 
 	<div id="container">
 		<div id="leftThing">
@@ -34,7 +80,7 @@
 
 				</div>
 
-				<div class="dropdown show baseMargin" id="countryDropdown">
+				<div class="dropdown show" id="countryDropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="countrySelected"
 					 aria-expanded="false">Colombia</button>
 
@@ -49,6 +95,13 @@
 				</div>
 
 
+
+				<button id="info" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-sm"><i
+					 class="material-icons">
+						info
+					</i></button>
+
+
 				<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
 				<button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
@@ -58,10 +111,6 @@
 				<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
 					<strong>...</strong> ...
 				</div>
-
-
-
-
 			</form>
 		</div>
 
@@ -100,6 +149,10 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCIbrBddWlfWQXpwnM5BPqmrvQb5cm0hQw&callback=initMap"
 	 async defer></script>
 
+
+	<script>
+		$('#myModal').modal('show')
+	</script>
 
 
 
