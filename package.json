@@ -23,6 +23,7 @@
     "isomorphic-fetch": "^2.2.1",
     "mysql": "^2.16.0",
     "node-php": "0.0.1",
+    "node-ssh": "^5.1.2",
     "xpress": "^2.4.6"
   }
 }

@@ -14,8 +14,9 @@
 
 </head>
 
-<body>
+<body style="background-color: #263238;">
 	<!-- Dialogo de información-->
+
 
 	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
@@ -60,75 +61,153 @@
 		</div>
 	</div>
 
-
-	<div id="container">
-		<div id="leftThing">
-			<form class="form-inline my-2 my-lg-0" id="assistance">
-
-				<h4>Entorno</h4>
-				<div id="contentEnvironments">
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios1" value="option1" checked="">
-						<label class="form-check-label" for="exampleRadios1">Pruebas
-						</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios2" value="option2">
-						<label class="form-check-label" for="exampleRadios2">Producción
-						</label>
-					</div>
-
-				</div>
-
-				<div class="dropdown show" id="countryDropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="countrySelected"
-					 aria-expanded="false">Colombia</button>
-
-					<div class="dropdown-menu" aria-labelledby="countryDropdown">
-						<a class="dropdown-item" href="#">Colombia</a>
-						<a class="dropdown-item" href="#">Guatemala</a>
-						<a class="dropdown-item" href="#">Dóminicana</a>
-						<a class="dropdown-item" href="#">Ecuador</a>
-						<a class="dropdown-item" href="#">Puerto Rico</a>
-						<a class="dropdown-item" href="#">Uruguay</a>
-					</div>
-				</div>
-
-
-
-				<button id="info" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-sm"><i
-					 class="material-icons">
-						info
-					</i></button>
-
-
-				<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
-				<button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
-					<strong>...</strong> ...
-				</div>
-
-				<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
-					<strong>...</strong> ...
-				</div>
+	<div class="row" style="background-color: #263238;">
+		<div id="logList" class="col-4">
+			<!-- Search form -->
+			<form class="form-inline md-form form-sm mt-0" style="flex-flow: inherit;" id="filter">
+				<button class="btn" style="margin-left:1rem;margin-top: 1rem;" type="button" id="reset">
+					<i class="material-icons">
+						cancel
+					</i>
+				</button>
+				<input id="filterText" style="margin-left:10px!important;border-color:#333f46;margin-right: 10px;margin-top: 1rem;background-color: #333f46;color: #fff"
+				 class="form-control ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+				<button class="btn" style="margin-top: 1rem;outline:none" type="submit">
+					<i class="material-icons">
+						search
+					</i>
+				</button>
 			</form>
+
+			<div class="list-group" id="list-logs" role="tablist">
+
+			</div>
+			<div id="progressLog" class="progress" style="margin-left:1rem;height: 5px;visibility: hidden;">
+				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+				 aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color: #5e7174;"></div>
+			</div>
 		</div>
 
-		<div id="content">
-			<div id="map"></div>
+		<div class="col-8">
+			<div style="margin-bottom:10px;">
+				<h4 id="fileId" style="color: white;margin-top: 20;font-family: monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;">Content</h4>
+				<div class="row" style="margin-right:auto">
+					<div class="col-9 row-centered" style="display: -webkit-box;">
+						<select class="form-control" id="selectLines" style="color: ghostwhite;background-color: #ffffff0f;background-clip: padding-box;border: 1px solid #ffffff69;width: auto;margin-right: 10px;"
+						 onchange="changeNumberLines();">
+							<option value="all">*</option>
+							<option value="custom">Custom</option>
+						</select>
+
+						<input id="countLines" class="form-control" min="1" max="10000000" value="100" style="display:none;width: auto;margin-right: 10px;"
+						 type="number" placeholder="count" aria-label="Number">
+
+						<button class="btn btn-primary" id="refresh">
+							<i class="material-icons">
+								autorenew
+							</i>
+						</button>
+					</div>
+
+					<div class="col-3" style="text-align:end">
+					
+						<button id="zoomin" class="btn btn-primary" id="refresh">
+							<i class="material-icons">
+								zoom_out
+							</i>
+						</button>
+						<button id="zoomout" class="btn btn-primary" id="refresh">
+							<i class="material-icons">
+								zoom_in
+							</i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div id="progress" class="progress" style="display:none;margin-right: 1rem">
+				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+				 aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color: #5e7174;"></div>
+			</div>
+
+			<div id="logInfo" style="text-align:end">
+
+				<textarea readonly id="logText" style="overflow:scroll;white-space:pre-wrap;overflow-wrap: break-word;margin-top:auto;outline:none!important;border-color:#f5fcff17;background:#ccc0;width: -webkit-fill-available;color: #c0c3c5;font-family: monospace;font-family: monospace; font-size: 14px; font-style: normal; font-variant: normal;margin-right: auto;height: 85%">...</textarea>
+				<button id="scroller" class="btn btn-primary" style="margin-top:10px">
+					<i id="top" class="material-icons" style="display: block;">
+						expand_less
+					</i>
+					<i id="bottom" class="material-icons" style="display: none;">
+						expand_more
+					</i>
+
+				</button>
+			</div>
+		</div>
+
+
+
+		<div id="container" style="display:none">
+
+			<div id="leftThing" style="display: none;">
+				<form class="form-inline my-2 my-lg-0" id="assistance">
+					<h1 id="log">Prueba</h1>
+					<h4>Entorno</h4>
+					<div id="contentEnvironments">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios1" value="option1" checked="">
+							<label class="form-check-label" for="exampleRadios1">Pruebas
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios2" value="option2">
+							<label class="form-check-label" for="exampleRadios2">Producción
+							</label>
+						</div>
+
+					</div>
+
+					<div class="dropdown show" id="countryDropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="countrySelected"
+						 aria-expanded="false">Colombia</button>
+
+						<div class="dropdown-menu" aria-labelledby="countryDropdown">
+							<a class="dropdown-item" href="#">Colombia</a>
+							<a class="dropdown-item" href="#">Guatemala</a>
+							<a class="dropdown-item" href="#">Dóminicana</a>
+							<a class="dropdown-item" href="#">Ecuador</a>
+							<a class="dropdown-item" href="#">Puerto Rico</a>
+							<a class="dropdown-item" href="#">Uruguay</a>
+						</div>
+					</div>
+
+
+
+					<button id="info" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-sm"><i
+						 class="material-icons">
+							info
+						</i></button>
+
+
+					<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
+					<button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
+						<strong>...</strong> ...
+					</div>
+
+					<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
+						<strong>...</strong> ...
+					</div>
+				</form>
+			</div>
+
+			<div id="content" style="display: none;">
+				<div id="map"></div>
+			</div>
+
 		</div>
 
 	</div>
-
-	</div>
-
-
-
-
-
-
-
-
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -143,8 +222,6 @@
 	<script src="./app.js"></script>
 	<script src="./map.js"></script>
 
-	<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-	<script src="./connection.js"></script>
 
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCIbrBddWlfWQXpwnM5BPqmrvQb5cm0hQw&callback=initMap"
 	 async defer></script>
