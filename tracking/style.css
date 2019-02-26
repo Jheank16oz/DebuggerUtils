@@ -1,0 +1,145 @@
+	/* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+	#logList {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 100%;
+		padding-right: inherit;
+	}
+
+	#logInfo {
+		overflow: hidden;
+		border-radius:10px;
+		height: 90%;
+		margin-right: 1rem;
+	}
+	
+	#map {
+		height: 100%;
+	}
+
+	/* Optional: Makes the sample page fill the window. */
+
+	body {
+		overflow: hidden;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	#container {
+		height: 100%;
+		width: 100%;
+		display: flex;
+	}
+
+	#leftThing {
+		width: 25%;
+		margin: 16px;
+	}
+
+	#content {
+		width: 75%;
+	}
+
+	#assistanceId {
+		margin-top: 14px;
+	}
+
+	#search {
+		margin-top: 14px!important;
+	}
+
+	#country {
+		margin-top: 14px;
+	}
+
+	#environment {
+		margin-top: 14px;
+	}
+
+	#alertNotFound {
+		margin-top: 14px;
+		display: none;
+	}
+
+	#alertFound {
+		margin-top: 14px;
+		display: none;
+	}
+
+	#production {
+		margin-inline-start: 14px;
+	}
+
+	.form-check {
+		width: fit-content!important;
+	}
+
+	#contentEnvironments {
+		width: 100%;
+	}
+
+	.baseMargin {
+		width: 100%;
+		margin-top: 14px;
+	}
+
+	#countryDropdown {
+		margin-top: 14px;
+	}
+
+	#info{
+		margin-left: 14px;
+		width: 20%;
+		margin-top: 14px;
+	}
+
+	.list-group-item-action {
+		width: 100%;
+		color: #697c84!important;
+		text-align: inherit;
+	}
+
+	.list-group-item {
+		position: relative;
+		display: block;
+		padding: .75rem 1.25rem;
+		margin-bottom: -1px;
+		background-color:#fff0!important;
+		border: 1px solid rgb(51, 63, 70)!important;
+	}
+	.list-group-item.active {
+		color: white!important;
+		background-color: #6db8b5!important;
+		border-color: #6db8b5!important;
+	}
+
+	#selectLines {
+		color: #ffffff!important;
+		background-color: #333f46!important;
+		border-color: #333f46!important;;
+	}
+
+	
+
+
+	#countLines{
+		color: #ffffff!important;
+		background-color: #333f46!important;
+		border-color: #333f46!important;
+	}
+
+	#logText{
+		margin-right: 1rem;
+    	padding: 1rem;
+    	border-radius: 10px;
+    	margin-top: 1rem;
+		color: #ffffff!important;
+		background-color: #333f46!important;
+		border-color: #333f46!important;
+	}
+
+	.row-centered {
+		text-align:center;
+	}

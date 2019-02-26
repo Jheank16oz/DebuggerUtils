@@ -2,13 +2,15 @@
 node_ssh = require('node-ssh');*/
 
 var Client = require('ssh2').Client;
+var configuration = require("./configuration");
+
 var conn = new Client();
 conn.on('ready', function() {
   console.log('Client :: ready');
 }).connect({
-  host: '192.168.11.114',
-  username: 'root',
-  password: ''
+  host: configuration.settings.mysql[0].host,
+  username: configuration.settings.mysql[0].username,
+  password: configuration.settings.mysql[0].password
 });
 
 module.exports = { 

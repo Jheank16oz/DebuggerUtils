@@ -1,0 +1,25 @@
+.contentapp {
+    height: 100%;
+    background-color: blueviolet;
+}
+
+.nav-bar {
+    background: linear-gradient(-90deg, rgb(2, 74, 207), rgb(132, 230, 255));
+    height: 60px;
+    margin-bottom: 15px;
+  }
+
+.my-card-content {
+    padding: 16px;
+}
+
+.my-card {
+    height: 350px;
+    width: 350px;
+}
+
+.btn {
+    background-color: blueviolet!important;
+    color: white!important;
+
+}
