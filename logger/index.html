@@ -13,20 +13,19 @@
 
 </head>
 
-<body style="background-color: #263238;">
+<body>
 	
-	<div class="row" style="background-color: #263238;">
+	<div id="app" class="row">
 		<div id="logList" class="col-4">
 			<!-- Search form -->
-			<form class="form-inline md-form form-sm mt-0" style="flex-flow: inherit;" id="filter">
-				<button class="btn" style="margin-left:1rem;margin-top: 1rem;" type="button" id="reset">
+			<form id="filter" class="form-inline md-form form-sm mt-0" >
+				<button id="reset" class="btn" type="button">
 					<i class="material-icons">
 						cancel
 					</i>
 				</button>
-				<input id="filterText" style="margin-left:10px!important;border-color:#333f46;margin-right: 10px;margin-top: 1rem;background-color: #333f46;color: #fff"
-				 class="form-control ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
-				<button class="btn" style="margin-top: 1rem;outline:none" type="submit">
+				<input id="filterText" class="form-control ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+				<button id="search" class="btn"  type="submit">
 					<i class="material-icons">
 						search
 					</i>
@@ -36,24 +35,25 @@
 			<div class="list-group" id="list-logs" role="tablist">
 
 			</div>
-			<div id="progressLog" class="progress" style="margin-left:1rem;height: 5px;visibility: hidden;">
-				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
-				 aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color: #5e7174;"></div>
+
+			<div v-show="isLogLoading" id="progressLog" class="progress">
+				<div id="progressInfo" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+				 aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
 
 		<div class="col-8">
-			<div style="margin-bottom:10px;">
-				<h4 id="fileId" style="color: white;margin-top: 20;font-family: monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;">Content</h4>
-				<div class="row" style="margin-right:auto">
-					<div class="col-9 row-centered" style="display: -webkit-box;">
-						<select class="form-control" id="selectLines" style="color: ghostwhite;background-color: #ffffff0f;background-clip: padding-box;border: 1px solid #ffffff69;width: auto;margin-right: 10px;"
-						 onchange="changeNumberLines();">
+			<div class="div-marginBottom">
+				<h4 id="fileId">Content</h4>
+				<div class="row row-marginRightAuto" >
+					<div class="col-9 row-centered col-inline">
+						<select class="form-control" id="selectLines"
+						 @change="changeNumberLines();">
 							<option value="all">*</option>
 							<option value="custom">Custom</option>
 						</select>
 
-						<input id="countLines" class="form-control" min="1" max="10000000" value="100" style="display:none;width: auto;margin-right: 10px;"
+						<input id="countLines" class="form-control" min="1" max="10000000" value="100"
 						 type="number" placeholder="count" aria-label="Number">
 
 						<button class="btn btn-primary" id="refresh">
@@ -63,7 +63,7 @@
 						</button>
 					</div>
 
-					<div class="col-3" style="text-align:end">
+					<div class="col-3 align-end">
 						<button id="currentTexSize" class="btn btn-primary">
 							14px
 						</button>
@@ -81,19 +81,19 @@
 				</div>
 			</div>
 
-			<div id="progress" class="progress" style="display:none;margin-right: 1rem">
-				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
-				 aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color: #5e7174;"></div>
+			<div id="progress" class="progress">
+				<div id="progressDetail" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+				 aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 
-			<div id="logInfo" style="text-align:end">
+			<div id="logInfo">
 
-				<textarea readonly id="logText" style="overflow:scroll;white-space:pre-wrap;overflow-wrap: break-word;margin-top:auto;outline:none!important;border-color:#f5fcff17;background:#ccc0;width: -webkit-fill-available;color: #c0c3c5;font-family: monospace;font-family: monospace; font-size: 14px; font-style: normal; font-variant: normal;margin-right: auto;height: 85%">...</textarea>
-				<button id="scroller" class="btn btn-primary" style="margin-top:10px">
-					<i id="top" class="material-icons" style="display: block;">
+				<textarea readonly id="logText" >...</textarea>
+				<button id="scroller" class="btn btn-primary">
+					<i id="top" class="material-icons" >
 						expand_less
 					</i>
-					<i id="bottom" class="material-icons" style="display: none;">
+					<i id="bottom" class="material-icons" >
 						expand_more
 					</i>
 
@@ -113,7 +113,11 @@
 
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
 	<script src="/logger/app"></script>
+	
+	
 	
 </body>
 

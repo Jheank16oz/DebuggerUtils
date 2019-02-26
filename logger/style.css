@@ -1,5 +1,17 @@
 	/* Always set the map height explicitly to define the size of the div
       * element that contains the map. */
+
+	#fileId {
+		color: white;
+		margin-top: 20;
+		font-family: monospace;
+		font-size: 24px;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 700;
+		line-height: 26.4px;
+	}
+
 	#logList {
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -9,11 +21,12 @@
 
 	#logInfo {
 		overflow: hidden;
-		border-radius:10px;
+		border-radius: 10px;
 		height: 90%;
 		margin-right: 1rem;
+		text-align: end!important;
 	}
-	
+
 	#map {
 		height: 100%;
 	}
@@ -25,12 +38,50 @@
 		height: 100%;
 		margin: 0;
 		padding: 0;
+		background-color: #263238;
+	}
+
+	#filter {
+		flex-flow: inherit;
+	}
+
+	#app {
+		background-color: #263238;
+	}
+
+	#search {
+		margin-top: 1rem;
+		outline: none;
+	}
+
+	#progressLog {
+		margin-left: 1rem;
+		height: 5px;
+	}
+
+	#progressInfo {
+		width: 100%;
+		background-color: #5e7174;
+	}
+
+	#reset {
+		margin-left: 10px;
+		margin-top: 1rem;
 	}
 
 	#container {
 		height: 100%;
 		width: 100%;
 		display: flex;
+	}
+
+	#filterText {
+		margin-left: 10px!important;
+		border-color: #333f46;
+		margin-right: 10px;
+		margin-top: 1rem;
+		background-color: #333f46;
+		color: #fff;
 	}
 
 	#leftThing {
@@ -89,7 +140,7 @@
 		margin-top: 14px;
 	}
 
-	#info{
+	#info {
 		margin-left: 14px;
 		width: 20%;
 		margin-top: 14px;
@@ -106,9 +157,10 @@
 		display: block;
 		padding: .75rem 1.25rem;
 		margin-bottom: -1px;
-		background-color:#fff0!important;
+		background-color: #fff0!important;
 		border: 1px solid rgb(51, 63, 70)!important;
 	}
+
 	.list-group-item.active {
 		color: white!important;
 		background-color: #6db8b5!important;
@@ -118,7 +170,8 @@
 	#selectLines {
 		color: #ffffff!important;
 		background-color: #333f46!important;
-		border-color: #333f46!important;;
+		border-color: #333f46!important;
+		;
 	}
 
 	.btn {
@@ -127,23 +180,87 @@
 		border-color: #333f46!important;
 	}
 
-
-	#countLines{
+	#countLines {
 		color: #ffffff!important;
 		background-color: #333f46!important;
 		border-color: #333f46!important;
 	}
 
-	#logText{
-		margin-right: 1rem;
-    	padding: 1rem;
-    	border-radius: 10px;
-    	margin-top: 1rem;
+	#logText {
+
+		padding: 1rem;
+		border-radius: 10px;
 		color: #ffffff!important;
 		background-color: #333f46!important;
 		border-color: #333f46!important;
+		overflow: scroll;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+		outline: none!important;
+		border-color: #f5fcff17;
+		width: -webkit-fill-available;
+		font-family: monospace;
+		font-family: monospace;
+		font-size: 14px;
+		font-style: normal;
+		font-variant: normal;
+		margin-right: auto;
+		height: 85%
 	}
 
 	.row-centered {
-		text-align:center;
+		text-align: center;
+	}
+
+	.div-marginBottom {
+		margin-bottom: 10px;
+	}
+
+	.row-marginRightAuto {
+		margin-right: auto!important;
+	}
+
+	.col-inline {
+		display: -webkit-box;
+	}
+
+	#selectLines {
+		color: ghostwhite;
+		background-color: #ffffff0f;
+		background-clip: padding-box;
+		border: 1px solid #ffffff69;
+		width: auto;
+		margin-right: 10px;
+	}
+
+	#countLines {
+		display: none;
+		width: auto;
+		margin-right: 10px;
+	}
+
+	#align-end {
+		text-align: end!important;
+	}
+
+	#progress {
+		display: none;
+		margin-right: 1rem
+	}
+
+	#progressDetail {
+		width: 100%;
+		background-color: #5e7174;
+	}
+
+	#scroller{
+		margin-top: 10px;
+	}
+
+	#bottom{
+		display: none;
+	}
+
+	#top{
+		display: block;
 	}
