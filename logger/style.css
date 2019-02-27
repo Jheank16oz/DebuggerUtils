@@ -49,6 +49,22 @@
 		background-color: #263238;
 	}
 
+	.itemLog {
+		font-family: monospace;
+		font-size: 15px;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 400;
+		line-height: 30px;
+		display: inline-flex;
+	}
+
+	.itemLogIcon {
+		vertical-align: middle;
+		margin-right: 10;
+		word-wrap: break-word
+	}
+
 	#search {
 		margin-top: 1rem;
 		outline: none;
@@ -154,7 +170,7 @@
 
 	.list-group-item {
 		position: relative;
-		display: block;
+		display: flex!important;
 		padding: .75rem 1.25rem;
 		margin-bottom: -1px;
 		background-color: #fff0!important;
@@ -187,7 +203,6 @@
 	}
 
 	#logText {
-
 		padding: 1rem;
 		border-radius: 10px;
 		color: #ffffff!important;
@@ -234,7 +249,6 @@
 	}
 
 	#countLines {
-		display: none;
 		width: auto;
 		margin-right: 10px;
 	}
@@ -244,7 +258,6 @@
 	}
 
 	#progress {
-		display: none;
 		margin-right: 1rem
 	}
 
@@ -253,14 +266,14 @@
 		background-color: #5e7174;
 	}
 
-	#scroller{
+	#scroller {
 		margin-top: 10px;
 	}
 
-	#bottom{
+	#bottom {
 		display: none;
 	}
 
-	#top{
+	#top {
 		display: block;
 	}
