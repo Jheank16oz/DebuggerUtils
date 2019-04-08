@@ -19,6 +19,11 @@
 		<div id="logList" class="col-4">
 			<!-- Search form -->
 			<form id="filter" class="form-inline md-form form-sm mt-0" @submit.prevent="onSubmit">
+				<select class="form-control" id="env" v-model="environment" v-on:keyup.enter="refresh" @change="chooseEnvironment">
+					<option value="debug">Pruebas</option>
+					<option value="release">Produccion</option>
+				</select>
+
 				<button id="reset" class="btn" type="button" @click="clearFilter">
 					<i class="material-icons">
 						cancel
@@ -55,7 +60,7 @@
 							<option value="custom">Custom</option>
 						</select>
 
-						<input v-show="filterVisibility" id="countLines" class="form-control" min="1" max="10000000" value="100" type="number"
+						<input v-show="filterVisibility" id="countLines" class="form-control" min="1" max="100000000" value="100" type="number"
 							placeholder="count" aria-label="Number" v-model="filterLines" v-on:keyup.enter="refresh">
 
 						<button class="btn btn-primary" id="refresh" @click="refresh">

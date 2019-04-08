@@ -3,19 +3,37 @@ node_ssh = require('node-ssh');*/
 
 var Client = require('ssh2').Client
 var configuration = require('./configuration')
-
+var indexSSH = 0
 var conn = new Client()
 conn.on('ready', function () {
   console.log('Client :: ready')
 }).connect({
-  host: configuration.settings.mysql[0].host,
-  username: configuration.settings.mysql[0].username,
-  password: configuration.settings.mysql[0].password
+  host: configuration.settings.ssh[indexSSH].host,
+  username: configuration.settings.ssh[indexSSH].username,
+  password: configuration.settings.ssh[indexSSH].password
 })
 
+var path = configuration.settings.ssh[indexSSH].path
+
 module.exports = {
+  changeEnvironment: function change (req, res) {
+    conn.end()
+    conn = new Client()
+    indexSSH = req.params.env == 'release' ? 1 : 0
+    
+    var currentConfiguration = configuration.settings.ssh[indexSSH]
+    path = currentConfiguration.path
+    conn.on('ready', function () {
+      res.status(200).send('change ready ' + currentConfiguration.type)
+      console.log('Client :: ready ' + currentConfiguration.type)
+    }).connect({
+      host: currentConfiguration.host,
+      username: currentConfiguration.username,
+      password: currentConfiguration.password
+    })
+  },
   log: function logger (req, res) {
-    var filter = "ls -m  /var/www/html/ws_vs2/app/*.log | awk -F/ '{print $NF}'"
+    var filter = 'ls -m  ' + path + "*.log | awk -F/ '{print $NF}'"
     var query = req.params.query
     if (query != undefined && query.length > 0) {
       filter += ' | grep ' + query + ''
@@ -40,9 +58,11 @@ module.exports = {
       res.status(404).send('No se encontraron resultados')
       return
     }
-    var command = 'timeout 10s tail -' + req.params.lines + ' /var/www/html/ws_vs2/app/' + req.params.filename + ' | awk \'{print NR-0 " " $0}\''
+    var command = 'timeout 10s tail -' + req.params.lines + ' ' + path + req.params.filename + ' | awk \'{print NR-0 " " $0}\''
+
 
     conn.exec(command, function (err, stream) {
+
       var result = ''
       if (err) {
         res.status(500).send(err)

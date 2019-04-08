@@ -5,7 +5,7 @@ var app = new Vue({
     isLogLoading: false,
     isDetailLoading: false,
     currentFileId: '',
-    maxLines: 10000,
+    maxLines: 100000000,
     currentRequest: null,
     fontSize: 14,
     minTextSize: 7,
@@ -15,7 +15,8 @@ var app = new Vue({
     detailStr: '...',
     filter: '',
     filterLines: 10000,
-    filterType: 'all'
+    filterType: 'all',
+    environment: 'debug'
   },
   methods: {
     onItemClick(index) {
@@ -27,13 +28,13 @@ var app = new Vue({
       this.currentFileId = this.logs[0]
       this.getDetailByLog()
     },
-    getInfo(text) {
+    getInfo() {
       // clear logs
       this.logs = []
       this.isLogLoading = true
       var self = this
       $.ajax({
-        url: '/logs/' + text,
+        url: '/logs/' + this.filter,
         method: 'GET',
         crossDomain: true
       }).done(function (data) {
@@ -58,28 +59,25 @@ var app = new Vue({
       }).done(function (data) {
         self.detailStr = data.length > 0 ? data : 'Sin contenido'
         self.isDetailLoading = false
-        self.scroll(false)
+        self.scrolled = false
+        self.scroll()
       }).fail(function (data) {
         if (data.statusText != 'abort') {
           self.isDetailLoading = false
         }
-        self.detailStr(data.responseText)
+        self.detailStr = data.responseText
       })
     },
-    scroll(toTop) {
+    scroll() {
       var $textarea = $('#logText')
-      if (toTop) {
+      if (this.scrolled) {
         $textarea.scrollTop(0)
       }else {
         $textarea.scrollTop($textarea[0].scrollHeight)
       }
     },
     filterRequest() {
-      if (this.filter.length == 0) {
-        this.getInfo('')
-        return
-      }
-      this.getInfo(this.filter)
+      this.getInfo()
     },
     onSubmit() {
       this.filterRequest()
@@ -110,7 +108,24 @@ var app = new Vue({
       }
     },
     scroller() {
-      this.scroll(this.scrolled)
+      this.scroll()
+    },
+    chooseEnvironment(){
+
+      if (this.currentRequest != undefined) {
+        this.currentRequest.abort()
+      }
+      var self = this
+      // execute log request for first instance 
+      this.currentRequest = $.ajax({
+        url: '/changeEnvironment/' + this.environment,
+        method: 'GET',
+        crossDomain: true
+      }).done(function (data) {
+        self.getInfo()
+      }).fail(function (data) {
+        alert("Error de conexión")
+      })
     }
   },
   computed: {
@@ -129,7 +144,7 @@ var app = new Vue({
 
   },
   mounted() {
-    this.getInfo('')
+    this.getInfo()
 
     var self = this
     $('#logText').scroll(function () {

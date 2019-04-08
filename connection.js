@@ -1,23 +1,24 @@
 var mysql = require("mysql");
 var server = require("./server");
 var configuration = require("./configuration");
-
-
+var express = require("express")
+var app = express()
+//const ngrok = require('ngrok');
 
 var con = mysql.createConnection({
-  host: configuration.settings.ssh[0].host,
-  user: configuration.settings.ssh[0].user,
-  password: configuration.settings.ssh[0].password
+  host: configuration.settings.mysql[0].host,
+  user: configuration.settings.mysql[0].usernam,
+  password: configuration.settings.mysql[0].password
 });
 
 var conProduction = mysql.createConnection({
-  host: configuration.settings.ssh[1].host,
-  user: configuration.settings.ssh[1].user,
-  password: configuration.settings.ssh[1].password
+  host: configuration.settings.mysql[1].host,
+  user: configuration.settings.mysql[1].username,
+  password: configuration.settings.mysql[1].password
 });
 
-var express = require("express")
-var app = express()
+
+
 // get all 
 app.get('/obtener/:environment/:country/:id', (req, res) => {
     var environmentString = req.params.environment
@@ -63,6 +64,10 @@ app.get('/info/:environment/:country', (req, res) => {
 });
 });
 
+// start page
+app.get('/changeEnvironment/:env', function (req, res) {
+  server.changeEnvironment(req, res)
+});
 
 // start page
 app.get('/', function (req, res) {
@@ -114,6 +119,23 @@ app.get('/connection.js', function (req, res) {
   res.sendFile(__dirname + '/connection.js');
 });
 
+app.get('/proveedor/style', function (req, res) {
+  res.sendFile(__dirname + '/proveedor_logger/style.css');
+});
+
+app.get('/proveedor', function (req, res) {
+  res.sendFile(__dirname + '/proveedor_logger/index.html');
+});
+
+app.get('/proveedor/app', function (req, res) {
+  res.sendFile(__dirname + '/proveedor_logger/app.js');
+});
+
+app.get('/proveedor/app', function (req, res) {
+  res.sendFile(__dirname + '/proveedor_logger/app.js');
+});
+
+app.use('/static', express.static(__dirname + '/node_modules'));
 
 
 
@@ -121,7 +143,9 @@ app.get('/connection.js', function (req, res) {
 const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+  console.log(`server running on port ${PORT}`);
+  /*(async function() {
+    const url = await ngrok.connect(PORT);
+    console.log(`server running on port ${url}`);
+  })();*/
 });
-
-
