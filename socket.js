@@ -13,13 +13,13 @@ app.get('/hello', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-console.log('Alguien se ha conectado con Sockets');
 io.sockets.emit('messages', messages);
 
 socket.on('new-message', function(data) {
   messages.unshift(data);
   io.sockets.emit('messages', messages);
 });
+
 
 
 });
@@ -34,6 +34,10 @@ app.get('/app.js', function (req, res) {
   res.sendFile(__dirname + '/proveedor_logger/app.js');
 });
 */
+
+var localtunnel = require('localtunnel');
+
 server.listen(8080, function() {
   console.log("Servidor corriendo en http://localhost:8080");
+
 });

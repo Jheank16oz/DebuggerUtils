@@ -2,6 +2,8 @@ var mysql = require("mysql");
 var server = require("./server");
 var configuration = require("./configuration");
 var express = require("express")
+
+
 var app = express()
 //const ngrok = require('ngrok');
 
@@ -142,10 +144,10 @@ app.use('/static', express.static(__dirname + '/node_modules'));
 
 const PORT = 5000;
 
+const ngrok = require('ngrok');
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
-  /*(async function() {
-    const url = await ngrok.connect(PORT);
-    console.log(`server running on port ${url}`);
-  })();*/
+
 });
+
+
