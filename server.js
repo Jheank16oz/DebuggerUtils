@@ -54,7 +54,8 @@ module.exports = {
     })
   },
   getLogByName: function logger (req, res) {
-    if (req.params.filename == undefined) {
+    console.log(req.params.filename);
+    if (req.params.filename == 'undefined') {
       res.status(404).send('No se encontraron resultados')
       return
     }
