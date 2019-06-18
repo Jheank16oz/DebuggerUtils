@@ -33,7 +33,7 @@ module.exports = {
     })
   },
   log: function logger (req, res) {
-    var filter = 'ls -m  ' + path + "*.log | awk -F/ '{print $NF}'"
+    var filter = 'ls -m  ' + path + "*.json | awk -F/ '{print $NF}'"
     var query = req.params.query
     if (query != undefined && query.length > 0) {
       filter += ' | grep ' + query + ''

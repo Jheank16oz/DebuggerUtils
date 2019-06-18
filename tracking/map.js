@@ -8,8 +8,7 @@
       var markers = [];
       var bounds;
       function initMap() {
-      
-        getMarkers();
+  
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -31,38 +30,6 @@
       }
     }
 
-      function addMarkers(locations) {
-        locations.forEach((doc) => {
-          var indexPostion = {
-            lat: doc.LATITUD,
-            lng: doc.LONGITUD
-          }
-
-          var marker = new google.maps.Marker({
-            position: indexPostion,
-            map: map,
-            title:"position " + doc.FECHAHORA,
-            icon:new google.maps.MarkerImage('https://image.flaticon.com/icons/svg/1281/1281225.svg',
-              null, null, null, new google.maps.Size(10,10))
-          });
-
-          var infowindow = new google.maps.InfoWindow({
-            content: `${doc.FECHAHORA} <br> ${doc.DISTANCIA} - ${doc.TIEMPO}`
-          });
-
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-          });
-
-          markers.push(marker);
-          bounds.extend(marker.position);
-
-        });
-       
-        //now fit the map to the newly inclusive bounds
-        map.fitBounds(bounds);
-
-      }
 
       function deleteAllMarkers(){
         markers.forEach((marker) =>{

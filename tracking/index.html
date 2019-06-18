@@ -14,111 +14,25 @@
 </head>
 
 <body>
-	<!-- Dialogo de información-->
-
-	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<ul class="list-group">
-					<li class="list-group-item">
-						Distancia arribo <h5 id="distancia_arribo"></h5>
-					</li>
-					<li class="list-group-item">
-						Distancia coordenadas <h5 id="distancia_coordenadas">...</h5>
-					</li>
-					<li class="list-group-item">
-						Tiempo coordenadas <h5 id="tiempo_coordenadas">...</h5>
-					</li>
-					<li class="list-group-item">
-						Distancia término <h5 id="distancia_termino">...</h5>
-					</li>
-					<li class="list-group-item">
-						Primera busqueda <h5 id="primer_busqueda">...</h5>
-					</li>
-					<li class="list-group-item">
-						Segunda busqueda <h5 id="segunda_busqueda">...</h5>
-					</li>
-					<li class="list-group-item">
-						Tiempo ac <h5 id="tiempo_ac">...</h5>
-					</li>
-					<li class="list-group-item">
-						tiempo deslogueo <h5 id="tiempo_deslogueo">...</h5>
-					</li>
-					<li class="list-group-item">
-						Tiempo inactivo - libre <h5 id="tiempo_inac_libre">...</h5>
-					</li>
-					<li class="list-group-item">
-						Tiempo inactivo - ocupado <h5 id="tiempo_inac_ocupado">...</h5>
-					</li>
-
+	<div id="app" class="container">
+		<div class="row">
+			<div id="map" class="col-9"></div>
+			<div class="col-3">
+				<textarea id="json"  style="height: 500px;" placeholder="json" aria-label="Search" >
+						[   [     {       "type": "request",       "idproveedor": "2448",       "idcontacto": "2856",       "latitud": "4.815798",       "longitud": "-75.704343",       "pais": "CO",       "fecha": "2019-06-17 17:09:56"     },     {       "error": true,       "mensaje": "Usuario inactivo",       "idasistencia": "",       "confirmar_arribo": 0,       "diagnostico": 0,       "termino_servicio": 0,       "idpais": "co",       "numero_prov": null,       "estado_coordenadas": "ARC"     }   ],   [     {       "type": "request",       "idproveedor": "2448",       "idcontacto": "2856",       "latitud": "4.815535",       "longitud": "-75.701776",       "pais": "CO",       "fecha": "2019-06-17 17:09:56"     },     {       "error": true,       "mensaje": "Usuario inactivo",       "idasistencia": "",       "confirmar_arribo": 0,       "diagnostico": 0,       "termino_servicio": 0,       "idpais": "co",       "numero_prov": null,       "estado_coordenadas": "ARC"     }   ],   [     {       "type": "request",       "idproveedor": "2448",       "idcontacto": "2856",       "latitud": "4.813175",       "longitud": "-75.702013",       "pais": "CO",       "fecha": "2019-06-17 17:09:56"     },     {       "error": true,       "mensaje": "Usuario inactivo",       "idasistencia": "",       "confirmar_arribo": 0,       "diagnostico": 0,       "termino_servicio": 0,       "idpais": "co",       "numero_prov": null,       "estado_coordenadas": "ARC"     }   ] ]
+				</textarea>
+				<ul>
+						<button id="send">send</button>
+						<button id="clear">clear</button>
 				</ul>
-
-
+				
+			</div>
+						
 			</div>
 		</div>
+		
 	</div>
-
-	<div id="app" class="row">
-			<div class="col-4">
-					<div >
-							<div >
-									<form class="form-inline my-2 my-lg-0" id="assistance">
-										<div id="contentEnvironments">
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios1" value="option1" checked="">
-												<label class="form-check-label" for="exampleRadios1">Pruebas
-												</label>
-											</div>
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="enviromentRadios" id="exampleRadios2" value="option2">
-												<label class="form-check-label" for="exampleRadios2">Producción
-												</label>
-											</div>
-					
-										</div>
-										<div class="dropdown show" id="countryDropdown">
-											<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" id="countrySelected"
-											 aria-expanded="false">Colombia</button>
-					
-											<div class="dropdown-menu" aria-labelledby="countryDropdown">
-												<a class="dropdown-item" href="#">Colombia</a>
-												<a class="dropdown-item" href="#">Guatemala</a>
-												<a class="dropdown-item" href="#">Dóminicana</a>
-												<a class="dropdown-item" href="#">Ecuador</a>
-												<a class="dropdown-item" href="#">Puerto Rico</a>
-												<a class="dropdown-item" href="#">Uruguay</a>
-											</div>
-										</div>
-										<button id="info" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-sm"><i
-											 class="material-icons">
-												info
-											</i></button>
-										<input id="assistanceId" class="form-control mr-sm-2" type="number" placeholder="Assistance id" aria-label="Search">
-										<button id="search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-										<div class="alert alert alert-success alert-dismissible fade show" role="alert" id="alertFound">
-											<strong>...</strong> ...
-										</div>
-					
-										<div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertNotFound">
-											<strong>...</strong> ...
-										</div>
-									</form>
-								</div>
-	
-				</div>
-			</div>
-			<div id="map" class="col-8"></div>
-	</div>
-
 			
-
-				
-
-			
-
-			
-
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

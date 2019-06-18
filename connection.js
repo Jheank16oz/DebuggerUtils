@@ -9,7 +9,7 @@ var app = express()
 
 var con = mysql.createConnection({
   host: configuration.settings.mysql[0].host,
-  user: configuration.settings.mysql[0].usernam,
+  user: configuration.settings.mysql[0].username,
   password: configuration.settings.mysql[0].password
 });
 
