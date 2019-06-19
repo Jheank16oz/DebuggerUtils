@@ -32,6 +32,7 @@
 
 
       function deleteAllMarkers(){
+        messages = [];
         markers.forEach((marker) =>{
           marker.setMap(null);
           //clear all bounds

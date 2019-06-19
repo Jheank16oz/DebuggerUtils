@@ -33,11 +33,13 @@ module.exports = {
     })
   },
   log: function logger (req, res) {
-    var filter = 'ls -m  ' + path + "*.json | awk -F/ '{print $NF}'"
+    console.log(path)
+    var filter = 'ls -m ' + path + " | awk -F/ '{print $NF}'"
     var query = req.params.query
     if (query != undefined && query.length > 0) {
       filter += ' | grep ' + query + ''
     }
+    console .log(filter)
     conn.exec(filter, function (err, stream) {
       var result = ''
       if (err) {
@@ -49,7 +51,7 @@ module.exports = {
       }).on('data', function (data) {
         result += data
       }).stderr.on('data', function (data) {
-        result = data
+        
       })
     })
   },
@@ -59,9 +61,9 @@ module.exports = {
       res.status(404).send('No se encontraron resultados')
       return
     }
-    var command = 'timeout 10s tail -' + req.params.lines + ' ' + path + req.params.filename + ' | awk \'{print NR-0 " " $0}\''
+    var command = 'timeout 10s tail -' + req.params.lines + ' ' + path + req.params.filename + ' '
 
-
+    console.log(command)
     conn.exec(command, function (err, stream) {
 
       var result = ''
@@ -74,7 +76,7 @@ module.exports = {
       }).on('data', function (data) {
         result += data
       }).stderr.on('data', function (data) {
-        result = data
+        //result = data
       })
     })
   }
