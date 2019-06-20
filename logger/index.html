@@ -19,9 +19,10 @@
 		<div id="logList" class="col-4">
 			<!-- Search form -->
 			<form id="filter" class="form-inline md-form form-sm mt-0" @submit.prevent="onSubmit">
-				<select class="form-control" id="env" v-model="environment" v-on:keyup.enter="refresh" @change="chooseEnvironment">
-					<option value="debug">Pruebas</option>
-					<option value="release">Produccion</option>
+				<select class="form-control" id="env" v-on:keyup.enter="refresh" @change="chooseEnvironment">
+					<option v-for="(environment,index) in environments" v-bind:value="environment.id">
+						{{ environment.name }}
+					</option>
 				</select>
 
 				<button id="reset" class="btn" type="button" @click="clearFilter">
@@ -37,6 +38,8 @@
 					</i>
 				</button>
 			</form>
+
+			<h6 id="url">{{ currentHost }} </h6>
 
 			<div class="list-group" id="list-logs" role="tablist">
 				<li v-for="(log,index) in logs" class="file-name list-group-item itemLog list-group-item-action "
