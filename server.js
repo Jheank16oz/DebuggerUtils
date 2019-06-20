@@ -16,21 +16,44 @@ conn.on('ready', function () {
 var path = configuration.settings.ssh[indexSSH].path
 
 module.exports = {
+  getEnvironments: function environments(res){
+    if(configuration.settings.ssh.length > 0){
+      var json = []
+      var index = 0;
+      configuration.settings.ssh.forEach(ssh => {
+        json.push({
+          id:index,
+          name:ssh.name,
+          url:ssh.host          
+        })
+        index++;
+      });
+      res.status(200).send(json)      
+
+    }else{
+      res.status(403).send('Configurations are empty')      
+    }
+  },
   changeEnvironment: function change (req, res) {
     conn.end()
     conn = new Client()
-    indexSSH = req.params.env == 'release' ? 1 : 0
+    console.log('env index changed :'+req.params.env)
+    indexSSH = req.params.env
     
     var currentConfiguration = configuration.settings.ssh[indexSSH]
     path = currentConfiguration.path
-    conn.on('ready', function () {
-      res.status(200).send('change ready ' + currentConfiguration.type)
-      console.log('Client :: ready ' + currentConfiguration.type)
-    }).connect({
-      host: currentConfiguration.host,
-      username: currentConfiguration.username,
-      password: currentConfiguration.password
-    })
+    try{
+      conn.on('ready', function () {
+        res.status(200).send('change ready ' + currentConfiguration.host)
+        console.log('Client :: ready ' + currentConfiguration.host)
+      }).connect({
+        host: currentConfiguration.host,
+        username: currentConfiguration.username,
+        password: currentConfiguration.password
+      })
+    }catch(e){
+      res.status(403).send('conecction error')
+    }
   },
   log: function logger (req, res) {
     console.log(path)
@@ -63,7 +86,6 @@ module.exports = {
     }
     var command = 'timeout 10s tail -' + req.params.lines + ' ' + path + req.params.filename + ' '
 
-    console.log(command)
     conn.exec(command, function (err, stream) {
 
       var result = ''

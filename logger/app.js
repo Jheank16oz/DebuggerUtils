@@ -12,11 +12,12 @@ var app = new Vue({
     maxTextSize: 20,
     scrolled: false,
     logs: [],
+    environments: [],
     detailStr: '...',
     filter: '',
     filterLines: 10000,
     filterType: 'all',
-    environment: 'debug'
+    environment:0
   },
   methods: {
     onItemClick(index) {
@@ -27,6 +28,25 @@ var app = new Vue({
       this.logs = list
       this.currentFileId = this.logs[0]
       this.getDetailByLog()
+    },
+    getEnvironments(){
+      this.environments = []
+      var self = this
+      $.ajax({
+        url: '/environments',
+        method: 'GET',
+        crossDomain: true
+      }).done(function (data) {
+        console.log(data)
+        self.environments = data
+        self.getInfo()
+        $("#env").val($("#env option:first").val());
+
+      }).fail(function (data) {
+        console.log(data)
+        self.environments = []
+
+      })
     },
     getInfo() {
       // clear logs
@@ -129,6 +149,11 @@ var app = new Vue({
     }
   },
   computed: {
+
+    currentHost(){
+      var currentEnvironment = this.environments[this.environment];
+      return currentEnvironment != undefined ? ""+currentEnvironment.url : ""
+    },
     scrolling() {
       return this.scrolled ? 'expand_less' : 'expand_more'
     },
@@ -144,7 +169,7 @@ var app = new Vue({
 
   },
   mounted() {
-    this.getInfo()
+    this.getEnvironments()
 
     var self = this
     $('#logText').scroll(function () {
@@ -154,6 +179,10 @@ var app = new Vue({
       }else {
         self.scrolled = false
       }
+    })
+
+    $('#env').change(function(){
+      self.environment = $('#env')[0].selectedIndex
     })
   }
 })

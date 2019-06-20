@@ -67,6 +67,11 @@ app.get('/info/:environment/:country', (req, res) => {
 });
 
 // start page
+app.get('/environments', function (req, res) {
+  server.getEnvironments(res)
+});
+
+// start page
 app.get('/changeEnvironment/:env', function (req, res) {
   server.changeEnvironment(req, res)
 });
