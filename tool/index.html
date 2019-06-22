@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    	<link rel="stylesheet" href="/tools/style">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<title>Proveedores</title>
+	</head>
+
+	<body>
+
+		<div id="app">
+
+			<button type="button" class="btn-open"><i class="material-icons md-18">dehaze</i></button>
+
+			<div class="container">
+				<div class="row" >
+						<ul class="col-4" >
+								<div class="useritem" v-for="(user,index) in users" v-on:click="select($event,user.IDPROVEEDOR)">
+										
+									<p class="lead-title" style="padding-left: 16px">{{ user.NOMBREFISCAL.toLowerCase() }}</p>
+									<p class="lead-body" style="padding-left: 16px">{{ user.NOMBRECOMERCIAL.toLowerCase() }}</p>
+									
+								</div>
+							   
+						</ul>
+
+						<div class="col-8 content" >
+						</div>
+					
+				</div>
+				
+				
+
+				</div>
+			</div>
+			
+	</div>
+		<div class="zeynep">
+			<ul>
+				<li>
+					<a href="#">Proveedores</a>
+				</li>
+
+				<li>
+					<a href="#">Asistencias</a>
+				</li>
+
+				<li>
+					<a href="#">About</a>
+				</li>
+			</ul>
+		</div>
+
+		<main>
+                
+            
+                
+			<!--
+                h1>
+				zeynep<span>js</span>
+			</h1>
+
+			<p class="lead">A light-weight multi-level jQuery side menu plugin.</p>
+            -->
+
+			
+		</main>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+			
+		<div class="zeynep-overlay"></div>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="/tools/main"></script>
+        
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="/tools/app"></script>
+		
+	
+	</body>
+</html>

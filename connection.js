@@ -19,8 +19,6 @@ var conProduction = mysql.createConnection({
   password: configuration.settings.mysql[1].password
 });
 
-
-
 // get all 
 app.get('/obtener/:environment/:country/:id', (req, res) => {
     var environmentString = req.params.environment
@@ -64,6 +62,30 @@ app.get('/info/:environment/:country', (req, res) => {
 
     });
 });
+});
+
+app.get('/proveedor', (req, res) => {
+  
+  con.connect(function(err) {
+    if (err) console.log(err) 
+    var query = "SELECT * from co_pruebas_soaang_catalogo.catalogo_proveedor";
+    con.query(query, function (err, result) {
+      if (err) console.log(err);
+      res.status(200).send(result)
+    });
+  });
+});
+
+
+app.get('/proveedor/:providerid', (req, res) => {
+  
+    var query = "SELECT * FROM co_pruebas_soaang_catalogo.catalogo_proveedor_contacto WHERE IDPROVEEDOR = '"+req.params.providerid+"' LIMIT 0,1000";
+    con.query(query, function (err, result) {
+      if (err) console.log(err);
+      res.status(200).send(result)
+      console.log(result)
+    });
+  
 });
 
 // start page
@@ -140,6 +162,22 @@ app.get('/proveedor/app', function (req, res) {
 
 app.get('/proveedor/app', function (req, res) {
   res.sendFile(__dirname + '/proveedor_logger/app.js');
+});
+
+app.get('/tools/style', function (req, res) {
+  res.sendFile(__dirname + '/tool/style.css');
+});
+
+app.get('/tools', function (req, res) {
+  res.sendFile(__dirname + '/tool/index.html');
+});
+
+app.get('/tools/main', function (req, res) {
+  res.sendFile(__dirname + '/tool/main.js');
+});
+
+app.get('/tools/app', function (req, res) {
+  res.sendFile(__dirname + '/tool/app.js');
 });
 
 app.use('/static', express.static(__dirname + '/node_modules'));
