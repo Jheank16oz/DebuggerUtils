@@ -184,5 +184,45 @@ var app = new Vue({
     $('#env').change(function(){
       self.environment = $('#env')[0].selectedIndex
     })
+
+    var data = {
+      aceptar_siguiente: "2",
+      await_request: true,
+      country: "CO",
+      id_assistance: "291883",
+      latitud: 4.8383831,
+      longitud: -75.6789196,
+      token: "dd33687a40dce8dbd93525f612d5aef3"
+      
+      };
+
+		console.log(data)
+
+    $.ajax({
+      async: true,
+      xhrFields: {
+        withCredentials: true
+      },
+			url: "https://www.seguimientooperativo.site/ws_dev/app/api-python/provider/validate_awaiting_assistance/",
+      method: "POST",
+      crossDomain: true,
+      dataType: 'jsonp',
+      headers: {
+				"Content-Type": "application/json",
+				"Cache-Control": "no-cache",
+				"Access-Control-Allow-Origin": "*"
+      },
+			processData: false,
+			contentType: false,
+			mimeType: "multipart/form-data",
+      data: null
+	    })
+	    .done(function(data){
+	    	console.log(data);
+      });
+      
+      
+
+
   }
 })

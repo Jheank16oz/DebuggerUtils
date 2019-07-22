@@ -1,5 +1,4 @@
 var mysql = require("mysql");
-var server = require("./server");
 var configuration = require("./configuration");
 var express = require("express")
 
@@ -90,12 +89,12 @@ app.get('/proveedor/:providerid', (req, res) => {
 
 // start page
 app.get('/environments', function (req, res) {
-  server.getEnvironments(res)
+  //server.getEnvironments(res)
 });
 
 // start page
 app.get('/changeEnvironment/:env', function (req, res) {
-  server.changeEnvironment(req, res)
+  //server.changeEnvironment(req, res)
 });
 
 // start page
@@ -137,11 +136,11 @@ app.get('/tracking/app', function (req, res) {
 });
 
 app.get('/logs/:query*?', function (req, res) {
-  server.log(req, res)
+  //server.log(req, res)
 });
 
 app.get('/log/:lines/:filename*?', function (req, res) {
-  server.getLogByName(req, res)
+  //server.getLogByName(req, res)
 });
 
 app.get('/connection.js', function (req, res) {
@@ -181,8 +180,6 @@ app.get('/tools/app', function (req, res) {
 });
 
 app.use('/static', express.static(__dirname + '/node_modules'));
-
-
 
 
 const PORT = 5001;
