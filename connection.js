@@ -147,21 +147,19 @@ app.get('/connection.js', function (req, res) {
   res.sendFile(__dirname + '/connection.js');
 });
 
-app.get('/proveedor/style', function (req, res) {
+app.get('/proveedor-socket-network/style', function (req, res) {
   res.sendFile(__dirname + '/proveedor_logger/style.css');
 });
 
-app.get('/proveedor', function (req, res) {
+app.get('/proveedor-socket-network', function (req, res) {
   res.sendFile(__dirname + '/proveedor_logger/index.html');
 });
 
-app.get('/proveedor/app', function (req, res) {
+app.get('/proveedor-socket-network/app', function (req, res) {
   res.sendFile(__dirname + '/proveedor_logger/app.js');
 });
 
-app.get('/proveedor/app', function (req, res) {
-  res.sendFile(__dirname + '/proveedor_logger/app.js');
-});
+
 
 app.get('/tools/style', function (req, res) {
   res.sendFile(__dirname + '/tool/style.css');
