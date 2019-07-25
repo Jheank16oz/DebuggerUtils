@@ -20,6 +20,11 @@ socket.on('new-message', function(data) {
   io.sockets.emit('messages', messages);
 });
 
+socket.on('clear', function(data) {
+  messages = []
+  io.sockets.emit('messages', messages);
+});
+
 
 
 });

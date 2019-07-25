@@ -10,4 +10,11 @@ function render (data) {
   
   $('#json-renderer').jsonViewer(data);
 
+  document.getElementById("clear").addEventListener("click", function(){
+    socket.emit('clear')
+  });
 }
+
+
+
+
